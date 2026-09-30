@@ -6,7 +6,7 @@ programa
 		// nao lebro dcomo declarar tudo na mesma linha
 
 		inteiro esc = 0, dia = 1, horas = 0, passatem = 0
-		inteiro fome = 0, felicidade = 0, saude = 0
+		inteiro fome = 0, felicidade = 5, saude = 0, darBanho = 10 
 		faca{
 		escreva("\n\n========== MENU ========== \n      Dia: ",dia, " Hora: ",horas," \n\n1. Avançar Tempo \n2. Alimentar \n3. Jogar \n4. Dar banho \n5. Ver Status \nQual a sua Escolha? ")
 		leia(esc)
@@ -18,6 +18,8 @@ programa
 					se(passatem == 1){ // Avança 8 horas
 						horas = horas + 8
 						escreva("\n\nVoce pulou 8 horas")
+            darBanho = darBanho - 2
+
 						}
 
 					se(horas == 24){ //Avança um dia após avançar 8 horas 3 vezes
@@ -32,6 +34,15 @@ programa
 			caso 2: // Alimentar
 			caso 3: // Jogar
 			caso 4: // Dar Banho
+
+          se (darBanho == 10){
+          
+              escreva("Ja estou limpo ")
+              darBanho = 4 
+          }     senao{
+                escreva ("Banho finalizado ")
+                darBanho = darBanho + 2 
+                }
 			caso 5: // Status
 					escreva("\n===== STATUS ATUAL - TAMAGOCHI=====\n\n")
 					escreva("Dia atual: ",dia)
