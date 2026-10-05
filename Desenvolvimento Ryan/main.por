@@ -5,22 +5,18 @@ programa
 	{
 		// nao lebro dcomo declarar tudo na mesma linha
 
-		inteiro esc = 0 
-		inteiro dia = 1
-		inteiro horas = 0
-		inteiro passatem = 0
-		inteiro felicidade = 10
-		inteiro banho = 0
-		inteiro limpeza = 6
+		inteiro esc = 0, dia = 1, horas = 0, passatem = 0, felicidade = 10, banho = 0, limpeza = 6, escolhaTamagochi, contadorjogo = 1, escolhaJogador
+
+		cadeia jogadaTamagotchi = ""
 		
 		faca{
 		escreva("\n\n========== Status ==========  \n| Dia: ",dia, " |"," Hora: ",horas," |", " Felicidade: ", felicidade, " |"," Limpeza: ", limpeza," |")
-		escreva("\n\n========== MENU ========== \n   \n\n1. Avançar Tempo \n2. \n3. \n4. Dar banho  \n5. Sair \nQual a sua Escolha? ")
+		escreva("\n\n========== MENU ========== \n   \n\n1. Avançar Tempo \n2. \n3. Jogar \n4. Dar banho  \n5. Sair \nQual a sua Escolha? ")
 		leia(esc)
 
 
 		escolha (esc){
-			caso 1:
+			caso 1: // Avançar Tempo
 					escreva("\n\n========== Soneca ==========  \n1. Avançar 8 Horas \n2. Voltar \nEscolha: ")
 					leia(passatem)
 					
@@ -43,9 +39,36 @@ programa
 						
 				pare
 				
-			caso 2:
-			caso 3:
-			caso 4:
+			caso 2: // Alimentar
+			caso 3: // Jogar
+
+								faca{
+					escolhaTamagochi = (contadorjogo % 3) + 1
+					se(escolhaTamagochi == 1){jogadaTamagotchi = "Pedra"}
+					se(escolhaTamagochi == 2){jogadaTamagotchi = "Papel"}
+					se(escolhaTamagochi == 3){jogadaTamagotchi = "Tesoura"}
+						escreva("\nVamos jogar Jogo da Velha!. Escolha: \n1. Pedra\n2. Papel\n3. Tesoura\n4. Voltar ao menu\nEscolha: ")
+						leia(escolhaJogador)
+						se(escolhaJogador == 4){
+							pare
+						}
+						se(escolhaJogador == 1 ou escolhaJogador == 2 ou escolhaJogador == 3){
+						se(escolhaTamagochi == escolhaJogador){
+							escreva("\nTamagotchi tambem escolheu ",jogadaTamagotchi,". Empate! Jogue novamente\n")			
+						
+					}senao se((escolhaJogador == 1 e escolhaTamagochi == 3) ou (escolhaJogador == 2 e escolhaTamagochi == 1) ou (escolhaJogador == 3 e escolhaTamagochi == 2)){
+							escreva("\nTamagotchi escolheu: ",jogadaTamagotchi,"\nVoce venceu!")
+							
+					} senao{escreva("\nTamagotchi escolheu: ",jogadaTamagotchi,"\nO tamagochi venceu!")
+					}
+
+						}senao{escreva("Digite um numero valido dentro do jogo")
+						}
+						contadorjogo = contadorjogo + 1
+					}enquanto(escolhaJogador == escolhaTamagochi)
+			pare
+			
+			caso 4: // Dar Banho
 				
 				se(limpeza == 10) 
    					felicidade = felicidade - 6
@@ -80,14 +103,3 @@ programa
 		
 	}
 }
-/* $$$ Portugol Studio $$$ 
- * 
- * Esta seção do arquivo guarda informações do Portugol Studio.
- * Você pode apagá-la se estiver utilizando outro editor.
- * 
- * @POSICAO-CURSOR = 29; 
- * @PONTOS-DE-PARADA = ;
- * @SIMBOLOS-INSPECIONADOS = ;
- * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
- * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
- */
