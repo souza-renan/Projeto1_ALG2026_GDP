@@ -1,0 +1,19 @@
+// alimentar 
+inteiro fome = 0, alimentar = -4 , felicidade = 10
+    escreva("Deseja alimentar o pet?\n1-sim \n2-nao \n ")
+    leia(fome)
+    se (fome == 10 ){
+      leia (alimentar)
+      fome = fome - alimentar 
+     felicidade  = felicidade - 2
+      escreva("Vou explodir!")
+    }
+    se (fome == 0){
+      fome =  fome + alimentar 
+      escreva("\nPor favor me alimente! ")
+    }senao se (fome ==0){
+    escreva("vou morrer de fome!/n ", felicidade)
+    }enquanto(fome < 10){
+    }
+  }
+}
