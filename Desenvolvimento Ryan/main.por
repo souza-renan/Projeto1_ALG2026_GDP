@@ -5,16 +5,24 @@ programa
 	{
 		// nao lebro dcomo declarar tudo na mesma linha
 
-		inteiro esc = 0, dia = 1, horas = 0, passatem = 0, felicidade = 10, banho = 0, limpeza = 6, escolhaTamagochi, contadorjogo = 1, escolhaJogador
+		inteiro esc = 0, dia = 1, horas = 0, passatem = 0, felicidade = 5, banho = 0, limpeza = 10, escolhaTamagochi, contadorjogo = 1, escolhaJogador, voltajogo = 0, fome = 0
 
-		cadeia jogadaTamagotchi = ""
+		cadeia jogadaTamagotchi = "", nomepet = ""
 		
 		faca{
-		escreva("\n\n========== Status ==========  \n| Dia: ",dia, " |"," Hora: ",horas," |", " Felicidade: ", felicidade, " |"," Limpeza: ", limpeza," |")
-		escreva("\n\n========== MENU ========== \n   \n\n1. Avançar Tempo \n2. \n3. Jogar \n4. Dar banho  \n5. Sair \nQual a sua Escolha? ")
+			se(voltajogo == 0){
+				escreva("Seja bem vindo ao jogo Tamagotchi!!\nEscolha o nome do seu pet: ")
+				leia(nomepet)
+				escreva("\nBoa sorte na sua aventura com o ", nomepet)				
+			}
+		escreva("\n========== MENU ========== \n   \n\n1. Avançar Tempo \n2. Alimentar \n3. Jogar \n4. Dar banho \n5. Ver status  \n9. Sair \nQual a sua Escolha? ")
 		leia(esc)
-
-
+		voltajogo++
+		
+		se(felicidade > 10){
+			felicidade = 10
+		}
+		
 		escolha (esc){
 			caso 1: // Avançar Tempo
 					escreva("\n\n========== Soneca ==========  \n1. Avançar 8 Horas \n2. Voltar \nEscolha: ")
@@ -23,6 +31,9 @@ programa
 					se(passatem == 1){
 						horas = horas + 8
 						escreva("\n\nVoce pulou 8 horas")
+						felicidade = felicidade + 2
+						limpeza = limpeza - 2
+						fome = fome + 4
 						}
 
 					se(horas == 24){
@@ -30,19 +41,27 @@ programa
 						escreva("\nVoce pulou um dia")
 						}
 
-					se(horas >= 24)
+					se(horas >= 24)                            
 						horas = 0
 						
-
-					se(horas == 0 ou horas == 8 ou horas == 16 ou horas == 24)
-							limpeza = limpeza - 2
-						
+	
 				pare
 				
 			caso 2: // Alimentar
+					se (fome <= 4 ){
+					    	escreva("Já estou cheio!")
+    						felicidade = felicidade - 2
+    						se(fome == 0){
+    							felicidade = felicidade - 2
+    						}
+    					}senao escreva("\n\n========== Hora de comer ==========  \nO",nomepet," foi alimentado.\n") 
+    				  			fome = fome - 4
+    				  			felicidade = felicidade + 2
+    						
+				pare 
 			caso 3: // Jogar
 
-								faca{
+				faca{
 					escolhaTamagochi = (contadorjogo % 3) + 1
 					se(escolhaTamagochi == 1){jogadaTamagotchi = "Pedra"}
 					se(escolhaTamagochi == 2){jogadaTamagotchi = "Papel"}
@@ -54,18 +73,21 @@ programa
 						}
 						se(escolhaJogador == 1 ou escolhaJogador == 2 ou escolhaJogador == 3){
 						se(escolhaTamagochi == escolhaJogador){
-							escreva("\nTamagotchi tambem escolheu ",jogadaTamagotchi,". Empate! Jogue novamente\n")			
+							escreva(nomepet,"tambem escolheu ",jogadaTamagotchi,". Empate! Jogue novamente\n")	
 						
-					}senao se((escolhaJogador == 1 e escolhaTamagochi == 3) ou (escolhaJogador == 2 e escolhaTamagochi == 1) ou (escolhaJogador == 3 e escolhaTamagochi == 2)){
-							escreva("\nTamagotchi escolheu: ",jogadaTamagotchi,"\nVoce venceu!")
+						}senao se((escolhaJogador == 1 e escolhaTamagochi == 3) ou (escolhaJogador == 2 e escolhaTamagochi == 1) ou (escolhaJogador == 3 e escolhaTamagochi == 2)){
+							escreva(nomepet," escolheu: ",jogadaTamagotchi,"\nVoce venceu!")
+							felicidade = felicidade + 3							
 							
-					} senao{escreva("\nTamagotchi escolheu: ",jogadaTamagotchi,"\nO tamagochi venceu!")
-					}
-
-						}senao{escreva("Digite um numero valido dentro do jogo")
+						}senao{escreva(nomepet," escolheu: ",jogadaTamagotchi,nomepet," venceu!")
+							felicidade = felicidade + 5					
 						}
-						contadorjogo = contadorjogo + 1
-					}enquanto(escolhaJogador == escolhaTamagochi)
+
+							}senao{escreva("Digite um numero valido dentro do jogo")
+							}
+								contadorjogo = contadorjogo + 1
+				}enquanto(escolhaJogador == escolhaTamagochi)
+
 			pare
 			
 			caso 4: // Dar Banho
@@ -81,25 +103,30 @@ programa
 				
 			pare
 			
-				
+			caso 5: //Ver status
+
+			escreva("\n\n========== Status ==========  \n| Dia: ",dia, " |"," Hora: ",horas," |", " Felicidade: ", felicidade, " |"," Limpeza: ", limpeza," |")
 		}
 
-		se(dia >= 7 ou felicidade <= 0 ou limpeza <= 0){//nunca mude isso, ou o programa nao acaba no dia 7, perdi 3 horas aqui!
-			esc = 5
-		}
-		
-		se (dia >= 7) 
-    			escreva("\nVoce ganhou! O pet sobreviveu por 7 dias.")
-		senao
-    			se (felicidade <= 0) 
-       			 escreva("\nVoce perdeu! O pet morreu de tristeza.")
-    		senao
-        		se (limpeza <= 0)
-            		escreva("\nVoce perdeu! O pet morreu de fedor.")
-  
-		
-			
-		}enquanto(esc != 5) 
+se(dia >= 7 ou felicidade <= 0 ou limpeza <= 0 ou fome >= 10){//nunca mude isso, ou o programa nao acaba no dia 7, perdi 3 horas aqui!
+	//precisa adicionar a variavel fome aqui, pro pet morrer quando chegar a algum valor e finalizar o jogo com fome.
+	
+	se (dia >= 7){
+		escreva("\nVoce ganhou!\n",nomepet," morreu de velhice. Parabens!\nDigite qualquer numero para jogar novamente. Caso queira mudar o nome do pet, saia do jogo.\nDigite 9 para sair do jogo: ")
+	}
+	senao se (felicidade <= 0){
+		escreva("\nVoce perdeu!\n",nomepet," morreu de tristeza.\nDigite qualquer numero para jogar novamente. Caso queira mudar o nome do pet, saia do jogo.\nDigite 9 para sair do jogo: ")
+	}
+	senao se (limpeza <= 0){
+		escreva("\nVoce perdeu!\n",nomepet," morreu de fedor.\nDigite qualquer numero para jogar novamente. Caso queira mudar o nome do pet, saia do jogo.\nDigite 9 para sair do jogo: ")
+	}
+	senao se (fome >= 10){
+		escreva("\nVoce perdeu!\n",nomepet," morreu de fome.\nDigite qualquer numero para jogar novamente. Caso queira mudar o nome do pet, saia do jogo.\nDigite 9 para sair do jogo: ")
+	}
+}	
+
+		//validar atributos
+		}enquanto(esc != 9) 
 		
 	}
 }
