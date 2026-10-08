@@ -31,9 +31,10 @@ programa
 					se(passatem == 1){
 						horas = horas + 8
 						escreva("\n\nVoce pulou 8 horas")
-						felicidade = felicidade + 2
+						felicidade = felicidade - 1// funcao morre de tristeza ou de felicidade.
 						limpeza = limpeza - 2
 						fome = fome + 4
+						banho = 0// correção da funcao dar banho
 						}
 
 					se(horas == 24){
@@ -92,14 +93,15 @@ programa
 			
 			caso 4: // Dar Banho
 				
-				se(limpeza == 10) 
+				se(banho == 1 e limpeza == 10)// correção da funcao dar banho
    					felicidade = felicidade - 6
 					
 					
 				escreva("\n\n========== Hora do Banho ==========  \n1. Tomar Banho \n2. Voltar \nEscolha: ")
 				leia(banho)
+				se(banho == 1){
 				limpeza = 10
-				escreva("\n\nTomou Banho\n")
+				escreva("\n\nTomou Banho\n")}
 				
 			pare
 			
@@ -107,6 +109,7 @@ programa
 
 			escreva("\n\n========== Status ==========  \n| Dia: ",dia, " |"," Hora: ",horas," |", " Felicidade: ", felicidade, " |"," Limpeza: ", limpeza," |")
 		}
+
 
 se(dia >= 7 ou felicidade <= 0 ou limpeza <= 0 ou fome >= 10){//nunca mude isso, ou o programa nao acaba no dia 7, perdi 3 horas aqui!
 	//precisa adicionar a variavel fome aqui, pro pet morrer quando chegar a algum valor e finalizar o jogo com fome.
@@ -130,3 +133,15 @@ se(dia >= 7 ou felicidade <= 0 ou limpeza <= 0 ou fome >= 10){//nunca mude isso,
 		
 	}
 }
+
+/* $$$ Portugol Studio $$$ 
+ * 
+ * Esta seção do arquivo guarda informações do Portugol Studio.
+ * Você pode apagá-la se estiver utilizando outro editor.
+ * 
+ * @POSICAO-CURSOR = 1024; 
+ * @PONTOS-DE-PARADA = ;
+ * @SIMBOLOS-INSPECIONADOS = ;
+ * @FILTRO-ARVORE-TIPOS-DE-DADO = inteiro, real, logico, cadeia, caracter, vazio;
+ * @FILTRO-ARVORE-TIPOS-DE-SIMBOLO = variavel, vetor, matriz, funcao;
+ */
