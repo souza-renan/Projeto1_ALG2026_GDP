@@ -50,10 +50,9 @@ programa
                 }
             }
 
-            // Se não conseguiu curar
-            se (doente != 0) {
-                escreva("Pet continua doente\n")
-            }
+            // Se não conseguiu curado
+                doente = 0 
+                escreva("Pet esta curado \n")
         }
     }
 }
