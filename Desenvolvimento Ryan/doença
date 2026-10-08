@@ -1,0 +1,45 @@
+programa
+{
+	inclua biblioteca Util
+	
+	funcao inicio()
+{
+	inteiro doente = 10
+	inteiro sorteia(*inteiro* 0, *inteiro* 1)
+		
+		se (sorteia = 1){ 
+		escreva("Seu pet esta doente ") 
+			
+		}
+
+		//passou 8 horas
+
+			//chance de curar
+				se(sorteia = 1){
+					sorteia2(0, 9)
+						se(sorteia2 <= 3){
+							escreva("pet esta curado")
+
+		//passou 16 horas
+
+			//chance de curar, se nao tiver curado antes
+				se(sorteia = 1){
+					sorteia3(0, 9)
+						se(sorteia3 <= 6){
+							escreva("pet esta curado")		
+
+		//passou 16 horas
+
+			//chance de curar, se nao tiver curado antes
+				escreva("seu está curado")
+				doente = 0							
+						}
+				}
+		
+	}
+
+				}
+
+	}
+
+}
