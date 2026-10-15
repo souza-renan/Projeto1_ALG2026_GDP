@@ -1,58 +1,31 @@
-programa
-{
-    inclua biblioteca Util
-
-    funcao inicio()
-    {
-        inteiro doente = 10
-        inteiro Utilsorteia = 0
-        inteiro Utilsorteia2 = 0
-        inteiro Utilsorteia3 = 0
-
-        // Sorteia se o pet ficará doente
-        Utilsorteia = Util.sorteia(0, 1)
-
-        se (Utilsorteia == 1) {
-            escreva("Seu pet está doente\n")
-
-            // Passaram 8 horas
-
-            // Sorteia se haverá tentativa de cura
-            Utilsorteia = Util.sorteia(0, 1)
-
-            se (Utilsorteia == 1) {
-
-                // Chance de cura
-                Utilsorteia2 = Util.sorteia(0, 9)
-
-                se (Utilsorteia2 <= 2) {
-                    escreva("Pet está curado\n")
-                    doente = 0
-                }
-            }
-
-            // Passaram mais 8 horas
-
-            se (doente != 0) {
-
-                // Nova chance de tentar curar
-                Utilsorteia = Util.sorteia(0, 1)
-
-                se (Utilsorteia == 1) {
-
-                    // Chance de cura
-                    Utilsorteia3 = Util.sorteia(0, 9)
-
-                    se (Utilsorteia3 <= 5) {
-                        escreva("Pet está curado\n")
-                        doente = 0
-                    }
-                }
-            }
-
-            // Se não conseguiu curado
-                doente = 0 
-                escreva("Pet esta curado \n")
-        }
+     se (validsaude == 0) {
+    saude = util.sorteia(0, 2) // 0 Saudavel. 1 Doente. 2 Saudavel.
+    se (saude == 1) {
+        escreva(nomepet, " está doente!")
+        validsaude = 1
     }
+}
+senao se (validsaude == 1) {
+    saude = util.sorteia(0, 100) // 0 Saudavel. 1 Doente. - 33%
+    se (saude <= 32) {
+        escreva(nomepet, " não está mais doente!")
+        validsaude = 0
+    }
+    senao {
+        validsaude = 2
+    }
+}
+senao se (validsaude == 2) {
+    saude = util.sorteia(0, 100) // 0 Saudavel. 1 Doente. - 66%
+    se (saude <= 66) {
+        escreva(nomepet, " não está mais doente!")
+        validsaude = 0
+    }
+    senao {
+        validsaude = 4
+    }
+}
+senao se (validsaude == 4) {
+    escreva(nomepet, " não está mais doente!")
+    validsaude = 0
 }
