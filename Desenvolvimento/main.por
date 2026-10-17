@@ -5,7 +5,7 @@ programa
 	funcao inicio()
 	{
 
-		inteiro esc = 0, dia = 1, horas = 0, passatem = 0, felicidade = 5, banho = 0, limpeza = 10, escolhaTamagochi, contadorjogo = 1, escolhaJogador, voltajogo = 0, fome = 0, validjogo = 0, saude = 0, validsaude = 0
+		inteiro esc = 0, dia = 1, horas = 0, passatem = 0, felicidade = 5, limpeza = 10, escolhaTamagochi, contadorjogo = 1, escolhaJogador, voltajogo = 0, fome = 0, validjogo = 0, saude = 0, validsaude = 0
 
 		cadeia jogadaTamagotchi = "", nomepet = ""
 		
@@ -30,7 +30,6 @@ programa
 						felicidade = felicidade - 1// funcao morre de tristeza ou de felicidade. 
 						limpeza = limpeza - 2
 						fome = fome + 4
-						banho = 0// correção da funcao dar banho
 							se(felicidade > 10){
 								felicidade = 10
 							}
@@ -82,12 +81,11 @@ programa
 					se (fome == 0 ){
 					    	escreva("Não estou com fome!")
     						felicidade = felicidade - 2
-    						
-    						se(fome <=4 ){
+					}senao se(fome <=4 ){
     							fome = 0
     							felicidade = felicidade - 2
-    						}
-    					}senao{ escreva("\n\n========== Hora de comer ==========  \nO",nomepet," encheu a pança.") 
+    							escreva("Não estou com fome!",nomepet," encheu a pança contra sua vontade.")
+    					}senao{escreva("\n\n========== Hora de comer ==========  \nO",nomepet," encheu a pança.") 
     				  			fome = fome - 4
     				  			felicidade = felicidade + 2
     					}
@@ -137,7 +135,7 @@ programa
 				se(limpeza == 10){// correção da funcao dar banho
    					escreva(" Não preciso de banho!")
    					felicidade = felicidade - 6
-				}senao{ escreva("\n\n========== Hora do Banho ==========  \nO ",nomepet," tomou banho.")
+				}senao{escreva("\n\n========== Hora do Banho ==========  \nO ",nomepet," tomou banho.")
 							limpeza = 10
 				}
 			pare
@@ -179,6 +177,7 @@ programa
 					dia = 1
 					horas = 0
 					validsaude = 0
+					saude = 0
 			}	
 
 		}enquanto(esc != 6) 
